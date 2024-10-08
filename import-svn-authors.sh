@@ -13,7 +13,7 @@ uniq > $AUTHORS_FILE
 # Function to format an author
 format_author() {
     local username="$1"
-    echo "$username = $username <${username}@gmail.com>"
+    echo "$username = $username <${username}@${AUTHORS_EMAIL_DOMAIN}>"
 }
 
 # Check if the input file exists

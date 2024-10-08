@@ -10,6 +10,7 @@ Open the `configs.sh` file and fill in the required variables:
 PROJECT_NAME="your_project_name"
 SVN_HOST="your_svn_host"
 TARGET_DIR="path/to/your/target/directory"
+AUTHORS_EMAIL_DOMAIN="gmail.com"
 AUTHORS_FILE="path/to/your/authors/file"
 ```
 
