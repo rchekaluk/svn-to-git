@@ -52,7 +52,7 @@ fi
 git config svn.authorsfile $AUTHORS_FILE
 
 # Step 3. Import the repo from SVN
-git svn fetch
+git svn fetch "$FETCH_SWITCHES"
 
 # echo These are imported branches:
 # git branch -a
