@@ -10,6 +10,14 @@ set -e  # Exit immediately if any command exits with a non-zero status
 # Source the configuration file
 source config.sh
 
+# Use explicit SVN credentials if provided
+SVN_USERNAME="$1"
+SVN_PASSWORD="$2"
+
+if [ -n "$SVN_USERNAME" ]; then
+    svn_username_switch="--username $SVN_USERNAME"
+fi
+
 # Function to handle errors
 handle_error() {
     local exit_code=$?
@@ -51,8 +59,13 @@ fi
 
 git config svn.authorsfile $AUTHORS_FILE
 
-# Step 3. Import the repo from SVN
-git svn fetch "$FETCH_SWITCHES"
+# Step 3. Import the repo from SVNx
+# https://stackoverflow.com/questions/21040553/git-svn-clone-password-pass-gives-unknown-option-password
+if [ -n "$SVN_PASSWORD" ]; then
+  echo $SVN_PASSWORD | git svn fetch "$FETCH_SWITCHES" $svn_username_switch
+else
+  git svn fetch "$FETCH_SWITCHES" $svn_username_switch
+fi
 
 # echo These are imported branches:
 # git branch -a

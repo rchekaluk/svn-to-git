@@ -3,7 +3,23 @@
 # Source the configuration file
 source config.sh
 
-svn log $SVN_HOST --quiet | 
+# Use explicit SVN credentials if provided
+SVN_USERNAME="$1"
+SVN_PASSWORD="$2"
+
+if [ -n "$SVN_USERNAME" ]; then
+    svn_username_switch="--username $SVN_USERNAME"
+fi
+
+if [ -n "$SVN_PASSWORD" ]; then
+    svn_password_switch="--password $SVN_PASSWORD"
+fi
+
+if [ -n "$SVN_USERNAME" -a -n "$SVN_PASSWORD" ]; then
+    noninteractive_switch="--non-interactive"
+fi
+
+svn log $SVN_HOST --quiet $svn_username_switch $svn_password_switch $noninteractive_switch | 
 grep -E "r[0-9]+ \| .+ \|" | 
 cut -d'|' -f2 | 
 sed 's/ //g' | 
