@@ -43,7 +43,11 @@ fi
 cd $TARGET_DIR
 
 # use this for standard layout
-git svn init $SVN_HOST --stdlayout --no-metadata
+if [ -n "$SVN_PASSWORD" ]; then
+  echo $SVN_PASSWORD | git svn init $SVN_HOST --stdlayout --nometadata $svn_username_switch
+else
+  git svn init $SVN_HOST --stdlayout --no-metadata
+fi
 
 # use this for non standard layout
 # git svn init $SVN_HOST 
