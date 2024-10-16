@@ -43,7 +43,7 @@ fi
 cd $TARGET_DIR
 
 # use this for standard layout
-env GIT_ASKPASS= SSH_ASKPASS= git svn init $SVN_HOST --stdlayout --no-metadata
+git svn init $SVN_HOST --stdlayout --no-metadata
 
 # use this for non standard layout
 # git svn init $SVN_HOST 
