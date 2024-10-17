@@ -18,6 +18,13 @@ if [ -n "$SVN_USERNAME" ]; then
     svn_username_switch="--username $SVN_USERNAME"
 fi
 
+# Use revision range if provided
+SVN_REVISION_RANGE="$3"
+
+if [ -n "$SVN_REVISION_RANGE" ]; then
+    svn_revision_switch="--revision $SVN_REVISION_RANGE"
+fi
+
 # Function to handle errors
 handle_error() {
     local exit_code=$?
@@ -66,9 +73,9 @@ git config svn.authorsfile $AUTHORS_FILE
 # Step 3. Import the repo from SVNx
 # https://stackoverflow.com/questions/21040553/git-svn-clone-password-pass-gives-unknown-option-password
 if [ -n "$SVN_PASSWORD" ]; then
-  echo $SVN_PASSWORD | env GIT_ASKPASS= SSH_ASKPASS= git svn fetch "$FETCH_SWITCHES" $svn_username_switch
+  echo $SVN_PASSWORD | env GIT_ASKPASS= SSH_ASKPASS= git svn fetch "$FETCH_SWITCHES" $svn_username_switch $svn_revision_switch
 else
-  git svn fetch "$FETCH_SWITCHES" $svn_username_switch
+  git svn fetch "$FETCH_SWITCHES" $svn_username_switch $svn_revision_switch
 fi
 
 # echo These are imported branches:
