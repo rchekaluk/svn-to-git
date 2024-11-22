@@ -5,4 +5,5 @@ SVN_HOST=https://svn_host
 TARGET_DIR=/path/to/local/git/dir
 AUTHORS_EMAIL_DOMAIN="gmail.com"
 AUTHORS_FILE=/path/to/local/svn-authors.txt
+INIT_SWITCHES="--stdlayout --no-metadata"
 FETCH_SWITCHES=""
