@@ -73,9 +73,9 @@ git config svn.authorsfile $AUTHORS_FILE
 # Step 3. Import the repo from SVNx
 # https://stackoverflow.com/questions/21040553/git-svn-clone-password-pass-gives-unknown-option-password
 if [ -n "$SVN_PASSWORD" ]; then
-  echo $SVN_PASSWORD | env GIT_ASKPASS= SSH_ASKPASS= git svn fetch "$FETCH_SWITCHES" $svn_username_switch $svn_revision_switch
+  echo $SVN_PASSWORD | env GIT_ASKPASS= SSH_ASKPASS= git svn fetch $FETCH_SWITCHES $svn_username_switch $svn_revision_switch
 else
-  git svn fetch "$FETCH_SWITCHES" $svn_username_switch $svn_revision_switch
+  git svn fetch $FETCH_SWITCHES $svn_username_switch $svn_revision_switch
 fi
 
 # echo These are imported branches:
