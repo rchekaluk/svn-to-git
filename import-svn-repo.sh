@@ -51,9 +51,9 @@ cd $TARGET_DIR
 
 # use this for standard layout
 if [ -n "$SVN_PASSWORD" ]; then
-  echo $SVN_PASSWORD | env GIT_ASKPASS= SSH_ASKPASS= git svn init $SVN_HOST $INIT_SWITCHES $svn_username_switch
+  echo $SVN_PASSWORD | env GIT_ASKPASS= SSH_ASKPASS= git svn init "$SVN_HOST" $INIT_SWITCHES $svn_username_switch
 else
-  git svn init $SVN_HOST $INIT_SWITCHES
+  git svn init "$SVN_HOST" $INIT_SWITCHES
 fi
 
 # use this for non standard layout
