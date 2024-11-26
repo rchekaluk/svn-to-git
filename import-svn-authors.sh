@@ -19,7 +19,7 @@ if [ -n "$SVN_USERNAME" -a -n "$SVN_PASSWORD" ]; then
     noninteractive_switch="--non-interactive"
 fi
 
-svn log $SVN_HOST --quiet $svn_username_switch $svn_password_switch $noninteractive_switch | 
+svn log "$SVN_HOST" --quiet $svn_username_switch $svn_password_switch $noninteractive_switch |
 grep -E "r[0-9]+ \| .+ \|" | 
 cut -d'|' -f2 | 
 sed 's/ //g' | 
